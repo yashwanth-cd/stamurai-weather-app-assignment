@@ -3,7 +3,7 @@ import SearchBar from "./SearchBar";
 
 export default function Navbar() {
   return (
-    <div className="bg-indigo-400 flex justify-between items-center sm:py-1 ">
+    <div className="bg-indigo-300 flex justify-between items-center sm:py-1 ">
       <Logo />
       <SearchBar />
     </div>

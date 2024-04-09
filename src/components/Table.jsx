@@ -35,6 +35,7 @@ const StyledHeader = styled(CommonRow)`
 const StyledRow = styled(CommonRow)`
   padding: 1rem 1.6rem;
   margin: 2px 25px 0 25px;
+  align-items: center;
 
   &:hover {
     background-color: #e0e7ff;
@@ -53,7 +54,9 @@ const StyledBody = styled.section`
 const Footer = styled.footer`
   background-color: var(--color-grey-50);
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 1.2rem;
 
   /* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
