@@ -2,7 +2,7 @@ import Table from "./Table";
 import Loader from "../loaders/Loader";
 import CityRow from "./CityRow";
 
-import { useGetCities } from "../services/apiCities";
+import { useGetCities } from "../hooks/useGetCities";
 
 export default function CitiesTable() {
   const { cities: results, isCitiesLoading, error } = useGetCities();

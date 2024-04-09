@@ -23,11 +23,11 @@ const StyledHeader = styled(CommonRow)`
   padding: 1.2rem 2rem;
   margin: 20px 25px 0 25px;
   background-color: var(--color-grey-50);
-  border: 2px solid #d1d5db;
+  border: 2px solid #717171;
   text-transform: capitalize;
   letter-spacing: 0.4px;
   font-weight: 600;
-  color: #f5f3ff;
+  color: #ffffff;
 
   background-color: #a5b4fc;
 `;
@@ -38,6 +38,7 @@ const StyledRow = styled(CommonRow)`
 
   &:hover {
     background-color: #e0e7ff;
+    cursor: pointer;
   }
 
   &:not(:last-child) {

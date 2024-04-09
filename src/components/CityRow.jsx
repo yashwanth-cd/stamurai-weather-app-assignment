@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useNavigate } from "react-router-dom";
+import useRedirect from "../hooks/useRedirect";
 import Table from "./Table";
 
 export default function CityRow({ city }) {
-  const navigate = useNavigate();
+  const navigate = useRedirect();
+  const { name, cou_name_en: country, timezone } = city;
 
   if (!city) return;
-  const { name, cou_name_en: country, timezone } = city;
 
   return (
     <Table.Row onClick={() => navigate(`/weather?city=${name}`)}>
