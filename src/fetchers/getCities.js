@@ -4,7 +4,7 @@ export async function getCities() {
 
   try {
     const res = await fetch(
-      `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/geonames-all-cities-with-a-population-1000/records?limit=100&timezone=Asia%2Fkolkata&refine=cou_name_en%3A"India"`
+      `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/geonames-all-cities-with-a-population-1000/records?limit=100&timezone=Asia%2Fkolkata&refine=cou_name_en%3A"India"`,
     );
     const data = res.json();
     return data;

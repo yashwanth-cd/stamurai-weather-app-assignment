@@ -1,4 +1,5 @@
 import { Celcius, Fahrenheit, Kelvin } from "@khanisak/temperature-converter";
+import { getName } from "country-list";
 
 export function celciusToFahrenheit(temp) {
   return new Celcius(temp).toFahrenheit();
@@ -20,6 +21,13 @@ export function convertToFlag(countryCode) {
 
 export function formatDay(dateStr) {
   return new Intl.DateTimeFormat("en", {
-    weekday: "short",
+    weekday: "long",
+    day: "2-digit",
+    year: "numeric",
   }).format(new Date(dateStr));
+}
+
+export function getCountryName(countryCode) {
+  const countryName = getName(countryCode);
+  return countryName;
 }

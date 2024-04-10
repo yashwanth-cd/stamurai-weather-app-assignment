@@ -1,7 +1,12 @@
-export default function WeatherHeader(city) {
+/* eslint-disable react/prop-types */
+import { convertToFlag } from "../services/helpers";
+
+export default function WeatherHeader({ city, cityDetails }) {
+  const countryFlag = convertToFlag(cityDetails?.sys?.country || "");
   return (
-    <h1 className="font-semibold sm:text-[20px] text-slate-600 ml-10 mt-10 md:text-[26px] lg:text-[32px]">
-      Weather forecast of {city.city}
+    <h1 className="font-semibold sm:text-[20px] text-slate-600 md:text-[26px] lg:text-[32px] flex items-center gap-4">
+      Weather forecast of {city}
+      <span style={{ fontSize: "3rem" }}>{countryFlag}</span>
     </h1>
   );
 }
