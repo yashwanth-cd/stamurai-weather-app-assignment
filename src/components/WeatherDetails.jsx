@@ -1,12 +1,9 @@
 /* eslint-disable react/prop-types */
 import Weather from "./Weather";
-import Loader from "../loaders/Loader";
 
 import CurrentWeatherDetails from "./CurrentWeatherDetails";
 
-export default function WeatherDetails({ cityDetails, isCityLoading }) {
-  if (isCityLoading) return <Loader />;
-
+export default function WeatherDetails({ cityDetails }) {
   return (
     <div>
       <Weather columns="4" type="flex">

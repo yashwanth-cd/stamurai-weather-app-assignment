@@ -7,15 +7,19 @@ import Navbar from "../components/Navbar";
 import WeatherHeader from "../components/WeatherHeader";
 import WeatherDetails from "../components/WeatherDetails";
 import TemperatureDetails from "../components/TemperatureDetails";
+import ErrorPage from "../components/ErrorPage";
 
 export default function WeatherPage() {
   const navigate = useRedirect();
   const [searchParams] = useSearchParams();
   const redirectedCity = searchParams.get("city");
   const { cityDetails, isCityLoading } = useCity(redirectedCity);
-  console.log(cityDetails);
 
   if (isCityLoading) return <Loader />;
+
+  if (cityDetails?.cod === "404") {
+    return <ErrorPage message={cityDetails.message} />;
+  }
 
   return (
     <div>
@@ -23,10 +27,7 @@ export default function WeatherPage() {
       <div className="mx-10 mt-10">
         <WeatherHeader city={redirectedCity} cityDetails={cityDetails} />
         <div className="lg:flex sm:block overflow-x-hidden">
-          <WeatherDetails
-            cityDetails={cityDetails}
-            isCityLoading={isCityLoading}
-          />
+          <WeatherDetails cityDetails={cityDetails} />
           <TemperatureDetails />
         </div>
 

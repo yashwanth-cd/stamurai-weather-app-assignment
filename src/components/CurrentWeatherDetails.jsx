@@ -9,7 +9,8 @@ import {
 import { getIcon } from "../fetchers/getIcon";
 
 export default function CurrentWeatherDetails({ cityDetails }) {
-  const { icon, description } = cityDetails.weather.at(0);
+  const icon = cityDetails?.weather?.at(0).icon;
+  const description = cityDetails?.weather?.at(0).description;
   const iconUrl = getIcon(icon);
   const currentTemp = kelvinToCelcius(cityDetails?.main?.temp).value.toFixed(0);
   const currentDate = formatDay(
