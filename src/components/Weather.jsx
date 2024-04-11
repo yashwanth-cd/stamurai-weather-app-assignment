@@ -13,7 +13,7 @@ function SmallBody({ children }) {
 }
 function Body({ children }) {
   return (
-    <div className="px-6 py-14 text-slate-600 bg-indigo-100 rounded-lg mt-8 mr-10 mb-8 font-semibold lg:text-[34px] md:text-[30px] sm:text-[28px] h-96 lg:w-full">
+    <div className="px-6 py-6 text-slate-600 bg-indigo-100 rounded-lg mt-8 mr-10 mb-8 lg:text-[34px] md:text-[30px] sm:text-[28px] h-96 lg:w-full">
       {children}
     </div>
   );

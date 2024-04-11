@@ -7,12 +7,10 @@ const buttonClass =
 
 export default function CurrentLocation() {
   const { cityName, isCityNameLoading } = useCityName();
-  console.log(cityName);
   const navigate = useRedirect();
 
   function handleCurrentLocation() {
     if (!cityName) return;
-
     navigate(`/weather?city=${cityName}`);
   }
 

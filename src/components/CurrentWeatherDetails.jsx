@@ -21,7 +21,9 @@ export default function CurrentWeatherDetails({ cityDetails }) {
 
   return (
     <div>
-      <h1 className="mb-4 text-indigo-700">Now</h1>
+      <h1 className="mb-4  text-indigo-600 rounded-xl bg-indigo-200 inline-block px-4">
+        Now
+      </h1>
       <div className="flex justify-between items-center">
         <span className="font-bold text-6xl mr-20">{currentTemp}&#8451;</span>
         <img

@@ -31,3 +31,16 @@ export function getCountryName(countryCode) {
   const countryName = getName(countryCode);
   return countryName;
 }
+
+export function getSunTime(timestamp) {
+  const date = new Date(timestamp * 1000);
+  // Convert adjusted timestamp to a Date object
+  function extractTime(dateString) {
+    const date = new Date(dateString);
+    const hours = ("0" + date.getHours()).slice(-2);
+    const minutes = ("0" + date.getMinutes()).slice(-2);
+    const seconds = ("0" + date.getSeconds()).slice(-2);
+    return `${hours}:${minutes}:${seconds}`;
+  }
+  return extractTime(date);
+}
