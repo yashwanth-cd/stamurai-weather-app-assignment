@@ -5,14 +5,18 @@ import TempType from "./TempType";
 import Weather from "./Weather";
 import { RiTimerLine } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa6";
+import { useTimezone } from "../hooks/useTimezone";
 
 export default function WindDetails({ cityDetails }) {
+  const { lat, lon } = cityDetails.coord;
   const { sunrise, sunset } = cityDetails.sys;
   const { timezone, visibility } = cityDetails;
-  const currTimezone = "";
+  const { timezoneValue, isTimezoneLoading } = useTimezone(lat, lon);
 
   const sunriseTime = getSunTime(sunrise, timezone);
   const sunsetTime = getSunTime(sunset, timezone);
+
+  if (isTimezoneLoading) return null;
 
   return (
     <div>
@@ -21,7 +25,7 @@ export default function WindDetails({ cityDetails }) {
           <h1 className="mb-4  text-indigo-600 rounded-xl bg-indigo-200 inline-block px-4">
             Sun and Visibility
           </h1>
-          <div className="block 2xl:justify-evenly sm:block md:block 2xl:flex px-4 space-y-3 2xl:mt-16 ">
+          <div className="block 2xl:justify-evenly sm:block md:block 2xl:flex px-4 space-y-6 2xl:mt-16 ">
             <TempType>
               <FiSunrise />
               <span className="text-[25px] text-slate-700 font-semibold">
@@ -37,7 +41,7 @@ export default function WindDetails({ cityDetails }) {
             <TempType>
               <RiTimerLine />
               <span className="text-[25px] text-slate-700 font-semibold">
-                {currTimezone}
+                {timezoneValue}
               </span>
             </TempType>
             <TempType>
