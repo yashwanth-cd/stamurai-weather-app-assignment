@@ -4,7 +4,6 @@ import { getSunTime } from "../services/helpers";
 import TempType from "./TempType";
 import Weather from "./Weather";
 import { RiTimerLine } from "react-icons/ri";
-import { useGetCities } from "../hooks/useGetCities";
 import { FaRegEye } from "react-icons/fa6";
 
 export default function WindDetails({ cityDetails }) {
@@ -32,7 +31,7 @@ export default function WindDetails({ cityDetails }) {
             <TempType>
               <FiSunset />
               <span className="text-[25px] text-slate-700 font-semibold">
-                {sunsetTime} am
+                {sunsetTime} pm
               </span>
             </TempType>
             <TempType>
