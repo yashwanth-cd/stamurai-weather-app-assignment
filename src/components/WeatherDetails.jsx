@@ -2,6 +2,7 @@
 import Weather from "./Weather";
 
 import CurrentWeatherDetails from "./CurrentWeatherDetails";
+import ForecastDetails from "./ForecastDetails";
 
 export default function WeatherDetails({ cityDetails }) {
   return (
@@ -11,12 +12,11 @@ export default function WeatherDetails({ cityDetails }) {
           <Weather.SmallBody>
             <CurrentWeatherDetails cityDetails={cityDetails} />
           </Weather.SmallBody>
-
-          <Weather.SmallBody>
-            <div>next 5 days</div>
-          </Weather.SmallBody>
         </div>
       </Weather>
+      <Weather.SmallBody>
+        <ForecastDetails cityDetails={cityDetails} />
+      </Weather.SmallBody>
     </div>
   );
 }

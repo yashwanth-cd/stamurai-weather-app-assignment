@@ -1,6 +1,5 @@
 import { useSearchParams } from "react-router-dom";
 import { useCity } from "../hooks/useCity";
-import useRedirect from "../hooks/useRedirect";
 
 import Loader from "../loaders/Loader";
 import Navbar from "../components/Navbar";
@@ -16,15 +15,14 @@ export default function WeatherPage() {
   const { cityDetails, isCityLoading } = useCity(redirectedCity);
 
   if (isCityLoading) return <Loader />;
-  console.log(cityDetails);
 
   if (cityDetails?.cod === "404") {
     return (
-      <>
+      <div>
         <Navbar />
         <BackButton />
         <ErrorPage message={cityDetails.message} />
-      </>
+      </div>
     );
   }
 
@@ -32,7 +30,6 @@ export default function WeatherPage() {
     <div>
       <Navbar />
       <BackButton />
-
       <div className="mx-10 mt-6">
         <WeatherHeader city={redirectedCity} cityDetails={cityDetails} />
         <div className="lg:flex sm:block overflow-x-hidden">
