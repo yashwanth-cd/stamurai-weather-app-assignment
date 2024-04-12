@@ -34,7 +34,7 @@ export default function CitiesTable() {
         />
         <Table.Footer>
           <div>
-            Developed with ❤️ by <b>Yashwanth Sai</b>
+            Developed with <strong>passion</strong> by <b>Yashwanth Sai</b>
           </div>
           <div className="flex items-center gap-2">
             <img style={{ height: "45px" }} src="stamurai.png" alt="" />

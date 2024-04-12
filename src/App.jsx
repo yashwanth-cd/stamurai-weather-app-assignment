@@ -26,7 +26,7 @@ export default function App() {
         </Routes>
       </BrowserRouter>
       <Toaster
-        position="bottom-right"
+        position="bottom-left"
         gutter={12}
         containerStyle={{ margin: "8px" }}
         toastOptions={{
