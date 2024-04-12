@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useCity } from "../hooks/useCity";
+import Table from "../components/Table";
 
 import Loader from "../loaders/Loader";
 import Navbar from "../components/Navbar";
@@ -37,6 +38,17 @@ export default function WeatherPage() {
           <TemperatureDetails cityDetails={cityDetails} />
         </div>
       </div>
+      <Table>
+        <Table.Footer>
+          <div>
+            Developed with ❤️ by <b>Yashwanth Sai</b>
+          </div>
+          <div className="flex items-center gap-2">
+            <img style={{ height: "45px" }} src="stamurai.png" alt="" />
+            <b>Stamurai</b> Assignment
+          </div>
+        </Table.Footer>
+      </Table>
     </div>
   );
 }
