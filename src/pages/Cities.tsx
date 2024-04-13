@@ -1,7 +1,8 @@
+import React from "react";
 import CitiesTable from "../components/CitiesTable";
 import Navbar from "../components/Navbar";
 
-export default function Cities() {
+const Cities: React.FC = () => {
   return (
     <div>
       <Navbar />
@@ -9,3 +10,5 @@ export default function Cities() {
     </div>
   );
 }
+
+export default Cities;

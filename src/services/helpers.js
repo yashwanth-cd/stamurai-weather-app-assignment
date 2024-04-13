@@ -32,7 +32,6 @@ export function getCountryName(countryCode) {
 
 export function getSunTime(timestamp) {
   const date = new Date(timestamp * 1000);
-  // Convert adjusted timestamp to a Date object
   function extractTime(dateString) {
     const date = new Date(dateString);
     const hours = ("0" + date.getHours()).slice(-2);

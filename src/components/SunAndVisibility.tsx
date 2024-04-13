@@ -1,27 +1,52 @@
-/* eslint-disable react/prop-types */
+import React from "react";
 import { FiSunrise, FiSunset } from "react-icons/fi";
 import { getSunTime } from "../services/helpers";
 import TempType from "./TempType";
-import Weather from "./Weather";
+import WeatherComponent from "./Weather"; // Renaming Weather to WeatherComponent
 import { RiTimerLine } from "react-icons/ri";
 import { FaRegEye } from "react-icons/fa6";
 import { useTimezone } from "../hooks/useTimezone";
 
-export default function WindDetails({ cityDetails }) {
+interface Coord {
+  lat: number;
+  lon: number;
+}
+
+interface Sys {
+  sunrise: number;
+  sunset: number;
+}
+
+interface CityDetails {
+  coord: Coord;
+  sys: Sys;
+  timezone: string;
+  visibility: number;
+}
+
+export default function WindDetails({
+  cityDetails,
+}: {
+  cityDetails: CityDetails;
+}) {
   const { lat, lon } = cityDetails.coord;
   const { sunrise, sunset } = cityDetails.sys;
   const { timezone, visibility } = cityDetails;
   const { timezoneValue, isTimezoneLoading } = useTimezone(lat, lon);
 
-  const sunriseTime = getSunTime(sunrise, timezone);
-  const sunsetTime = getSunTime(sunset, timezone);
+  const sunriseTime = getSunTime(sunrise);
+  const sunsetTime = getSunTime(sunset);
 
   if (isTimezoneLoading) return null;
 
   return (
     <div>
-      <Weather>
-        <Weather.Body>
+      <WeatherComponent type="flex">
+        {" "}
+        {/* Passing type prop */}
+        <WeatherComponent.Body>
+          {" "}
+          {/* Using renamed WeatherComponent */}
           <h1 className="mb-4  text-indigo-600 rounded-xl bg-indigo-200 inline-block px-4">
             Sun and Visibility
           </h1>
@@ -51,8 +76,10 @@ export default function WindDetails({ cityDetails }) {
               </span>
             </TempType>
           </div>
-        </Weather.Body>
-      </Weather>
+        </WeatherComponent.Body>{" "}
+        {/* Using renamed WeatherComponent */}
+      </WeatherComponent>{" "}
+      {/* Using renamed WeatherComponent */}
     </div>
   );
 }

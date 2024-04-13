@@ -1,6 +1,14 @@
-/* eslint-disable react/prop-types */
-import { createContext, useContext } from "react";
+import React, { createContext, useContext, ReactNode } from "react";
 import styled from "styled-components";
+
+interface TableProps {
+  columns: string;
+  children: ReactNode;
+}
+
+interface TableContextValue {
+  columns: string;
+}
 
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -11,7 +19,7 @@ const StyledTable = styled.div`
   overflow: hidden;
 `;
 
-const CommonRow = styled.div`
+const CommonRow = styled.div<{ columns: string }>`
   display: grid;
   grid-template-columns: ${(props) => props.columns};
   column-gap: 2.4rem;
@@ -72,10 +80,10 @@ const Empty = styled.p`
   margin: 2.4rem;
 `;
 
-const TableContext = createContext();
+const TableContext = createContext<TableContextValue | undefined>(undefined);
 
-function Header({ children }) {
-  const { columns } = useContext(TableContext);
+function Header({ children }: { children: ReactNode }) {
+  const { columns } = useContext(TableContext)!;
   return (
     <StyledHeader role="row" columns={columns}>
       {children}
@@ -83,8 +91,8 @@ function Header({ children }) {
   );
 }
 
-function Row({ children, onClick }) {
-  const { columns } = useContext(TableContext);
+function Row({ children, onClick }: { children: ReactNode; onClick?: () => void }) {
+  const { columns } = useContext(TableContext)!;
   return (
     <StyledRow role="row" columns={columns} onClick={onClick}>
       {children}
@@ -92,21 +100,30 @@ function Row({ children, onClick }) {
   );
 }
 
-function Body({ data, render }) {
+function Body({ data, render }: { data: any[]; render: (item: any, index: number) => ReactNode }) {
   if (!data.length) return <Empty>No data to display</Empty>;
 
   return <StyledBody>{data.map(render)}</StyledBody>;
 }
+
+interface TableComponents {
+  Header: typeof Header;
+  Row: typeof Row;
+  Body: typeof Body;
+  Footer: typeof Footer;
+}
+
+const Table: React.FC<TableProps> & TableComponents = ({ columns, children }) => {
+  return (
+    <TableContext.Provider value={{ columns }}>
+      <StyledTable role="table">{children}</StyledTable>
+    </TableContext.Provider>
+  );
+};
 
 Table.Header = Header;
 Table.Row = Row;
 Table.Body = Body;
 Table.Footer = Footer;
 
-export default function Table({ columns, children }) {
-  return (
-    <TableContext.Provider value={{ columns }}>
-      <StyledTable role="table">{children}</StyledTable>
-    </TableContext.Provider>
-  );
-}
+export default Table;

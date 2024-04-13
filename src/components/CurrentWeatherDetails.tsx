@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import React from "react";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { FiCalendar } from "react-icons/fi";
 import {
@@ -8,15 +9,35 @@ import {
 } from "../services/helpers";
 import { getIcon } from "../fetchers/getIcon";
 
-export default function CurrentWeatherDetails({ cityDetails }) {
-  const icon = cityDetails?.weather?.at(0).icon;
-  const description = cityDetails?.weather?.at(0).description;
+interface CityDetails {
+  weather: { icon: string; description: string }[];
+  main: { temp: number };
+  dt: number;
+  timezone: number;
+  name: string;
+  sys: { country: string };
+}
+
+interface CurrentWeatherDetailsProps {
+  cityDetails: CityDetails | null;
+}
+
+const CurrentWeatherDetails: React.FC<CurrentWeatherDetailsProps> = ({
+  cityDetails,
+}) => {
+  const icon = cityDetails?.weather?.[0]?.icon;
+  const description = cityDetails?.weather?.[0]?.description;
   const iconUrl = getIcon(icon);
-  const currentTemp = kelvinToCelcius(cityDetails?.main?.temp).value.toFixed(0);
-  const currentDate = formatDay(
-    new Date(cityDetails?.dt * 1000 + cityDetails.timezone * 1000),
-  );
-  const countryName = getCountryName(cityDetails?.sys.country);
+  const currentTemp =
+    kelvinToCelcius(cityDetails?.main?.temp)?.value.toFixed(0) || "";
+  const currentDate =
+    formatDay(
+      new Date(
+        (cityDetails?.dt || 0) * 1000 + (cityDetails?.timezone || 0) * 1000,
+      ),
+    ) || "";
+
+  const countryName = getCountryName(cityDetails?.sys.country) || "";
   const currentLocation = `${cityDetails?.name}, ${countryName}`;
 
   return (
@@ -45,4 +66,6 @@ export default function CurrentWeatherDetails({ cityDetails }) {
       </div>
     </div>
   );
-}
+};
+
+export default CurrentWeatherDetails;

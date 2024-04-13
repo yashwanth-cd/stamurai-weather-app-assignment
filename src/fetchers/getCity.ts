@@ -1,6 +1,6 @@
 const API_KEY = "a24d0389c1a23b6ef8e229a01263f13c";
 
-export async function getCity(city) {
+export async function getCity(city: string): Promise<any> {
   try {
     const res = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`,
@@ -11,4 +11,3 @@ export async function getCity(city) {
     throw new Error("Fetching city details failed");
   }
 }
-

@@ -1,4 +1,7 @@
-export async function getTimezone(latitude, longitude) {
+export async function getTimezone(
+  latitude: number,
+  longitude: number,
+): Promise<string | null> {
   try {
     const response = await fetch(
       `https://api.wheretheiss.at/v1/coordinates/${latitude},${longitude}`,

@@ -1,10 +1,22 @@
 /* eslint-disable react/prop-types */
+import React from "react";
 import { use5DayForecast } from "../hooks/use5DayForecast";
 import Loader from "../loaders/Loader";
 import { filterForecastByDay } from "../services/helpers";
-import { NextDays } from "./NextDays";
+import NextDays from "./NextDays";
 
-export default function ForecastDetails({ cityDetails }) {
+interface CityDetails {
+  coord: {
+    lat: number;
+    lon: number;
+  };
+}
+
+interface ForecastDetailsProps {
+  cityDetails: CityDetails;
+}
+
+export default function ForecastDetails({ cityDetails }: ForecastDetailsProps) {
   const { lat, lon } = cityDetails.coord;
   const { forecast, isForecastLoading } = use5DayForecast(lat, lon);
 

@@ -1,6 +1,7 @@
+import React from "react";
 import useRedirect from "../hooks/useRedirect";
 
-export default function BackButton() {
+const BackButton: React.FC = () => {
   const navigate = useRedirect();
   return (
     <button
@@ -10,4 +11,6 @@ export default function BackButton() {
       &larr; Back
     </button>
   );
-}
+};
+
+export default BackButton;

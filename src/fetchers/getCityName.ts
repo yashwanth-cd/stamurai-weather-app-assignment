@@ -1,22 +1,28 @@
 import { toast } from "react-hot-toast";
+
 const API_KEY = "a24d0389c1a23b6ef8e229a01263f13c";
 
-export async function getCityName() {
+interface Position {
+  coords: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
+export async function getCityName(): Promise<string> {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
+        async (position: Position) => {
+          const { latitude, longitude } = position.coords;
           try {
-            const cityName = await fetchCityName(lat, lon);
-            toast.success("Successfully Fetched current location");
+            const cityName = await fetchCityName(latitude, longitude);
             resolve(cityName);
           } catch (error) {
             reject(error);
           }
         },
-        (error) => {
+        (error: GeolocationPositionError) => {
           toast.error(
             "Error getting your location, please turn on your location",
           );
@@ -30,7 +36,7 @@ export async function getCityName() {
   });
 }
 
-async function fetchCityName(lat, lon) {
+async function fetchCityName(lat: number, lon: number): Promise<string> {
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
   );

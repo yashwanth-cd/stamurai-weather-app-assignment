@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { get5DayForecast } from "../fetchers/get5DayForcast";
 
-export function use5DayForecast(lat, lon) {
+export function use5DayForecast(lat: number, lon: number) {
   const {
     data: forecast,
     isLoading: isForecastLoading,
