@@ -19,16 +19,10 @@ const CurrentLocation: React.FC<CurrentLocationProps> = () => {
 
   return (
     <button className={buttonClass} onClick={handleCurrentLocation}>
-      {isCityNameLoading ? (
-        "Loading..."
-      ) : (
-        <>
-          <TiLocationArrow size={30} />
-          <span className="text-md font-semibold lg:hidden xl:block sm:hidden">
-            current location
-          </span>
-        </>
-      )}
+      <TiLocationArrow size={30} />
+      <span className="text-md font-semibold lg:hidden xl:block sm:hidden">
+        current location
+      </span>
     </button>
   );
 };

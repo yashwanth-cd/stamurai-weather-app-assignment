@@ -41,7 +41,7 @@ export default function WeatherPage() {
       <Table>
         <Table.Footer>
           <div>
-            Developed with <strong></strong> by <b>Yashwanth Sai</b>
+            Developed with <strong>Passion</strong> by <b>Yashwanth Sai</b>
           </div>
           <div className="flex items-center gap-2">
             <img style={{ height: "45px" }} src="stamurai.png" alt="" />
