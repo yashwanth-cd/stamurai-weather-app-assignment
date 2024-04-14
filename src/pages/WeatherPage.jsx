@@ -15,7 +15,13 @@ export default function WeatherPage() {
   const redirectedCity = searchParams.get("city");
   const { cityDetails, isCityLoading } = useCity(redirectedCity);
 
-  if (isCityLoading) return <Loader />;
+  if (isCityLoading)
+    return (
+      <>
+        <Navbar />
+        <Loader />
+      </>
+    );
 
   if (cityDetails?.cod === "404") {
     return (
