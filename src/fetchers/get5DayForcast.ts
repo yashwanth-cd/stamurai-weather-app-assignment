@@ -10,7 +10,7 @@ export async function get5DayForecast(
 ): Promise<ForecastData> {
   try {
     const res = await fetch(
-      `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`,
     );
     const data: ForecastData = await res.json();
     return data;
